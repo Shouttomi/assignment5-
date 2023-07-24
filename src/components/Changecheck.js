@@ -9,39 +9,26 @@ import Checkdata from "../data/Checkdata";
 const Changecheck = () => {
   let Newdata = JSON.stringify(Checkdata);
   let arr = JSON.parse(Newdata);
- 
 
-  const helper = (arr,i) => {
+  const helper = (arr, i) => {
     let add = {};
     let goat = [];
 
-    
-      arr[i].sub_departments.forEach((i) => {
-        add[i] = false;
-      });
-    
+    arr[i].sub_departments.forEach((i) => {
+      add[i] = false;
+    });
+
     goat.push(add);
 
     return goat;
   };
 
-  const [checkedItems, setCheckedItems] = useState(helper(arr,0)[0]);
+  const [checkedItems, setCheckedItems] = useState(helper(arr, 0)[0]);
 
-  const [checkedItems2, setCheckedItems2] = useState(helper(arr,1)[0]);
-
-
-
-
-
-
-
-
-
-
-
+  const [checkedItems2, setCheckedItems2] = useState(helper(arr, 1)[0]);
 
   const [toggle, setToggle] = useState(false);
-  const [toggle2,setToggle2] = useState(false)
+  const [toggle2, setToggle2] = useState(false);
 
   const handleCheckboxChange = (event) => {
     const { name, checked } = event.target;
@@ -60,36 +47,30 @@ const Changecheck = () => {
   };
 
   const handleCheckboxChange1 = (e) => {
-
-        console.log(checkedItems)
-      setCheckedItems((previtems) => {
-        const obj2 = {};
-        for (let key in previtems) {
-          if (previtems.hasOwnProperty(key)) {
-            obj2[key] = e.target.checked;
-          }
+    console.log(checkedItems);
+    setCheckedItems((previtems) => {
+      const obj2 = {};
+      for (let key in previtems) {
+        if (previtems.hasOwnProperty(key)) {
+          obj2[key] = e.target.checked;
         }
-        return obj2;
-      });
-    
+      }
+      return obj2;
+    });
   };
 
   const handleCheckboxChange2 = (e) => {
-
-    console.log(checkedItems2)
-  setCheckedItems2((previtems) => {
-    const obj2 = {};
-    for (let key in previtems) {
-      if (previtems.hasOwnProperty(key)) {
-        obj2[key] = e.target.checked;
+    console.log(checkedItems2);
+    setCheckedItems2((previtems) => {
+      const obj2 = {};
+      for (let key in previtems) {
+        if (previtems.hasOwnProperty(key)) {
+          obj2[key] = e.target.checked;
+        }
       }
-    }
-    return obj2;
-  });
-
-};
-
-  
+      return obj2;
+    });
+  };
 
   const helperToggle = () => {
     setToggle((prevToggle) => !prevToggle);
@@ -102,7 +83,7 @@ const Changecheck = () => {
   const countAllSubitems = () => {
     let count = 0;
     for (let key in checkedItems) {
-      if ( checkedItems.hasOwnProperty(key)) {
+      if (checkedItems.hasOwnProperty(key)) {
         count++;
       }
     }
@@ -112,15 +93,12 @@ const Changecheck = () => {
   const countAllSubitems2 = () => {
     let count = 0;
     for (let key in checkedItems2) {
-      if ( checkedItems2.hasOwnProperty(key)) {
+      if (checkedItems2.hasOwnProperty(key)) {
         count++;
       }
     }
     return count;
   };
-
-
-  
 
   return (
     <div>
@@ -148,10 +126,8 @@ const Changecheck = () => {
 
             {toggle && (
               <ul style={{ listStyle: "none", paddingLeft: "70px" }}>
-                
-
                 {arr[0].sub_departments.map((item, key) => {
-                    console.log(item)
+                  console.log(item);
                   return (
                     <li>
                       <FormControlLabel
@@ -169,14 +145,11 @@ const Changecheck = () => {
                     </li>
                   );
                 })}
-
-
               </ul>
             )}
           </li>
         </FormGroup>
       </ul>
-
 
       <ul style={{ listStyle: "none", padding: 0 }}>
         <FormGroup>
@@ -202,10 +175,8 @@ const Changecheck = () => {
 
             {toggle2 && (
               <ul style={{ listStyle: "none", paddingLeft: "70px" }}>
-                
-
                 {arr[1].sub_departments.map((item, key) => {
-                    console.log(item)
+                  console.log(item);
                   return (
                     <li>
                       <FormControlLabel
@@ -223,8 +194,6 @@ const Changecheck = () => {
                     </li>
                   );
                 })}
-
-
               </ul>
             )}
           </li>

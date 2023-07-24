@@ -46,6 +46,9 @@ const Component = () => {
     };
   
     return (
+
+        <>
+        
       <Box
         component="form"
         sx={{
@@ -91,6 +94,7 @@ const Component = () => {
           </Button>
         </Stack>
       </Box>
+      </>
     );
 }
 export default Component
