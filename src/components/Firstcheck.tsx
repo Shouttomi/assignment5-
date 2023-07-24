@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, ChangeEvent } from "react";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import FormGroup from "@mui/material/FormGroup";
@@ -10,14 +10,36 @@ import { Subdepthelper } from "../functions";
 import { countAllSubitems } from "../functions";
 import Button from "@mui/material/Button";
 
-const Firstcheck = ({ ind, lab }) => {
-  let arr = JsonConverter(Checkdata);
+interface SubDepartment {
+  department: string;
+  sub_departments: string[];
+}
 
-  const [checkedItems, setCheckedItems] = useState(Subdepthelper(arr, ind)[0]);
 
-  const [toggle, setToggle] = useState(false);
+interface CheckItem {
+  [key: string]: boolean;
+}
 
-  const handleCheckboxChange = (event) => {
+interface Props {
+  ind: number;
+  lab: string;
+}
+
+type CheckdataItem = {
+  department: string;
+  sub_departments: string[];
+};
+
+const Firstcheck: React.FC<Props> = ({ ind, lab }) => {
+  const arr: CheckdataItem[] = JsonConverter(Checkdata);
+
+  const [checkedItems, setCheckedItems] = useState<CheckItem>(
+    Subdepthelper(arr, ind)[0]
+  );
+
+  const [toggle, setToggle] = useState<boolean>(false);
+
+  const handleCheckboxChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, checked } = event.target;
     setCheckedItems((prevCheckedItems) => ({
       ...prevCheckedItems,
@@ -25,16 +47,15 @@ const Firstcheck = ({ ind, lab }) => {
     }));
   };
 
-  const handleCheckboxChange1 = (e) => {
-    console.log(checkedItems);
-    setCheckedItems((previtems) => {
-      const obj2 = {};
-      for (let key in previtems) {
-        if (previtems.hasOwnProperty(key)) {
-          obj2[key] = e.target.checked;
+  const handleCheckboxChange1 = (e: ChangeEvent<HTMLInputElement>) => {
+    setCheckedItems((prevItems) => {
+      const updatedItems: CheckItem = {};
+      for (const key in prevItems) {
+        if (prevItems.hasOwnProperty(key)) {
+          updatedItems[key] = e.target.checked;
         }
       }
-      return obj2;
+      return updatedItems;
     });
   };
 
@@ -53,7 +74,7 @@ const Firstcheck = ({ ind, lab }) => {
                 onClick={helperToggle}
                 sx={{ height: 30, margintop: 10, padding: 0 }}
               >
-                {toggle ? <RemoveIcon></RemoveIcon> : <AddIcon></AddIcon>}
+                {toggle ? <RemoveIcon /> : <AddIcon />}
               </Button>
             </div>
 
@@ -82,7 +103,7 @@ const Firstcheck = ({ ind, lab }) => {
                         <FormControlLabel
                           control={
                             <Checkbox
-                              id={key}
+                              id={key.toString()}
                               name={item}
                               value={`sub ${item}`}
                               checked={checkedItems[item]}

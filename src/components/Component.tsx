@@ -2,34 +2,39 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
-import { useState } from "react";
+import { useState, ChangeEvent, FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import { addusertolocalstorage } from "../localstorage/local";
+import React from "react";
 
-const Component = () => {
+// Define a type for the form values
+interface FormValues {
+  name: string;
+  email: string;
+  phone: string;
+}
+
+const Component: React.FC = () => {
   const navigate = useNavigate();
 
-  let initialvalue = { name: "", email: "", phone: "" };
-  const [values, setvalues] = useState(initialvalue);
+  const initialValues: FormValues = { name: "", email: "", phone: "" };
+  const [values, setValues] = useState<FormValues>(initialValues);
 
-  const handlechange = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
-
-    setvalues({ ...values, [name]: value });
-    // console.log(`${name}, ${value}`)
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setValues({ ...values, [name]: value });
   };
 
-  const onsubmit = (e) => {
+  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const { email, phone, name } = values;
 
     addusertolocalstorage(values);
 
     if (!email || !phone || !name) {
-      toast.error(" fill out all fields");
+      toast.error("Please fill out all fields");
       return;
     }
     navigate("/page");
@@ -50,6 +55,7 @@ const Component = () => {
               noValidate
               autoComplete="off"
               className="centerform"
+              onSubmit={onSubmit} // Add the onSubmit handler to the form element
             >
               <TextField
                 id="outlined-name"
@@ -57,7 +63,7 @@ const Component = () => {
                 variant="outlined"
                 name="name"
                 value={values.name}
-                onChange={handlechange}
+                onChange={handleChange}
               />
               <TextField
                 id="outlined-phone"
@@ -65,7 +71,7 @@ const Component = () => {
                 variant="outlined"
                 name="phone"
                 value={values.phone}
-                onChange={handlechange}
+                onChange={handleChange}
               />
               <TextField
                 id="outlined-email"
@@ -73,16 +79,11 @@ const Component = () => {
                 variant="outlined"
                 name="email"
                 value={values.email}
-                onChange={handlechange}
+                onChange={handleChange}
               />
 
               <Stack spacing={2} direction="row" className="justifybutton">
-                <Button
-                  variant="contained"
-                  type="submit"
-                  className="centerform"
-                  onClick={onsubmit}
-                >
+                <Button variant="contained" type="submit" className="centerform">
                   Button
                 </Button>
               </Stack>
@@ -93,4 +94,5 @@ const Component = () => {
     </>
   );
 };
+
 export default Component;
