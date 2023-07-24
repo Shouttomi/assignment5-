@@ -5,7 +5,6 @@ import Button from "@mui/material/Button";
 import { useState, ChangeEvent, FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-
 import { addusertolocalstorage } from "../localstorage/local";
 import React from "react";
 
@@ -45,12 +44,13 @@ const Component: React.FC = () => {
   return (
     <>
       <main className="registerform">
+        <h1>Register</h1>
         <div className="formout">
           <div>
             <Box
               component="form"
               sx={{
-                "& > :not(style)": { m: 1, width: "25ch" },
+                "& > :not(style)": { m: 1, width: "35ch" },
               }}
               noValidate
               autoComplete="off"
@@ -82,9 +82,14 @@ const Component: React.FC = () => {
                 onChange={handleChange}
               />
 
-              <Stack spacing={2} direction="row" className="justifybutton">
-                <Button variant="contained" type="submit" className="centerform">
-                  Button
+              <Stack spacing={2} direction="row" className="justifybutton" >
+                <Button
+                  variant="contained"
+                  type="submit"
+                  className="centerform"
+                  sx={{width:'25ch',marginTop:'2ch'}}
+                >
+                  Register
                 </Button>
               </Stack>
             </Box>
