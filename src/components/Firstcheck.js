@@ -8,7 +8,6 @@ import Checkdata from "../data/Checkdata";
 import { JsonConverter } from "../functions";
 import { Subdepthelper } from "../functions";
 import { countAllSubitems } from "../functions";
-import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 
 const Firstcheck = ({ ind, lab }) => {
@@ -48,19 +47,15 @@ const Firstcheck = ({ ind, lab }) => {
       <ul style={{ listStyle: "none", padding: 0 }}>
         <FormGroup>
           <li className="buttonandcheck">
-            
-
             <div className="controller">
               <Button
                 variant="contained"
                 onClick={helperToggle}
-                sx={{height: 30,margintop:10,padding:0}}
+                sx={{ height: 30, margintop: 10, padding: 0 }}
               >
                 {toggle ? <RemoveIcon></RemoveIcon> : <AddIcon></AddIcon>}
               </Button>
             </div>
-          
-            
 
             <div className="flex2">
               <FormControlLabel

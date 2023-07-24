@@ -1,19 +1,16 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import "./custom-toast.css";
 import Component from "./components/Component";
 import Page from "./components/Page";
-import Checknew from "./components/Checknew";
-import Protectedroutes from "./components/Protectedroutes";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-      <Route path="/" element={<Component />} />
+        <Route path="/" element={<Component />} />
         <Route path="/page" element={<Page />} />
-
-       
       </Routes>
       <ToastContainer position="top-center" />
     </BrowserRouter>

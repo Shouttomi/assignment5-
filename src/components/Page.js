@@ -9,6 +9,7 @@ import Firstcheck from "./Firstcheck";
 import { useNavigate } from "react-router-dom";
 import { getuserfromlocalstorage } from "../localstorage/local";
 import { useEffect } from "react";
+import { toast } from "react-toastify";
 
 const Page = () => {
   const h = JSON.stringify(Data);
@@ -41,7 +42,14 @@ const Page = () => {
   }, []);
 
   useEffect(() => {
-    if (getuserfromlocalstorage() === null) {
+    const { name, email, phone } = getuserfromlocalstorage();
+    if (
+      name === "" ||
+      email === "" ||
+      phone === "" ||
+      getuserfromlocalstorage() === null
+    ) {
+      toast.error("You need to register");
       navigate("/");
     }
   }, []);
@@ -78,7 +86,7 @@ const Page = () => {
 
   return (
     <>
-    <h1>Table</h1>
+      <h1>Table</h1>
       <Box sx={{ height: 400, width: "100%" }}>
         <DataGrid
           rows={fetcheddata}

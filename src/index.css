@@ -56,6 +56,10 @@ body {
   margin-right: 1rem;
 }
 
+.controller button{
+  background-color: black;
+}
+
 .loadingclass {
   text-align: center;
   margin-top: 10rem;
@@ -66,5 +70,43 @@ body {
 }
 
 h1{
-  padding: 20px;
+  padding: 10px;
+
+border-style: outset;
+color: rgb(0, 0, 0);
+display: inline-block;
+border-radius: 20px;
+  font-size: 50px;
+  margin: 20px;
 }
+
+.formout {
+  width: 400px; 
+  height: 300px; 
+  padding: 30px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+
+
+  border-radius: 30px;
+ 
+}
+
+.registerform{
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 15%;
+
+}
+
+.justifybutton{
+  justify-content: center;
+  
+}
+
+.justifybutton button{
+  background-color: black;
+}
+
