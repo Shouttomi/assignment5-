@@ -10,10 +10,7 @@ import { Subdepthelper } from "../functions";
 import { countAllSubitems } from "../functions";
 import Button from "@mui/material/Button";
 
-interface SubDepartment {
-  department: string;
-  sub_departments: string[];
-}
+
 
 
 interface CheckItem {
