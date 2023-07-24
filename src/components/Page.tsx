@@ -1,7 +1,7 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import { DataGrid } from "@mui/x-data-grid";
-import Data from "../data/Data";
+
 
 import Firstcheck from "./Firstcheck";
 import { useNavigate } from "react-router-dom";
@@ -25,8 +25,7 @@ interface User {
 
 
 const Page = () => {
-  const h = JSON.stringify(Data);
-  console.log(JSON.parse(h));
+
 
   const navigate = useNavigate();
 
@@ -65,6 +64,7 @@ const Page = () => {
       toast.error("You need to register");
       navigate("/");
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const columns = [
