@@ -79,9 +79,8 @@ const Firstcheck: React.FC<Props> = ({ ind, lab }) => {
               <FormControlLabel
                 control={
                   <Checkbox
-                    id="item1"
-                    name="customer_service"
-                    value="customer"
+                    id={`item${lab}`}
+                    name={`options${lab}`}
                     onChange={handleCheckboxChange1}
                   />
                 }
@@ -94,7 +93,7 @@ const Firstcheck: React.FC<Props> = ({ ind, lab }) => {
               {toggle && (
                 <ul style={{ listStyle: "none", paddingLeft: "70px" }}>
                   {arr[ind].sub_departments.map((item, key) => {
-                    console.log(item);
+                   
                     return (
                       <li key={key}>
                         <FormControlLabel

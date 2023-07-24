@@ -38,7 +38,7 @@ const Component: React.FC = () => {
     }
     navigate("/page");
 
-    console.log(values);
+  
   };
 
   return (

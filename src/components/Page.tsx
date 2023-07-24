@@ -2,13 +2,11 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import { DataGrid } from "@mui/x-data-grid";
 
-
 import Firstcheck from "./Firstcheck";
 import { useNavigate } from "react-router-dom";
 import { getuserfromlocalstorage } from "../localstorage/local";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
-
 
 interface Post {
   id: number;
@@ -23,13 +21,10 @@ interface User {
   phone: string;
 }
 
-
 const Page = () => {
-
+  const options = ["customers", "designs"];
 
   const navigate = useNavigate();
-
-  console.log(getuserfromlocalstorage());
 
   const [loading, setLoading] = React.useState(true);
   const [fetcheddata, setfetcheddata] = React.useState<Post[]>([]);
@@ -42,7 +37,6 @@ const Page = () => {
       const data = await fetch(url);
       const response = await data.json();
 
-      console.log(response);
       setLoading(false);
       setfetcheddata(response);
     } catch (error) {
@@ -54,7 +48,7 @@ const Page = () => {
   }, []);
 
   useEffect(() => {
-    const obj:User | null = getuserfromlocalstorage();
+    const obj: User | null = getuserfromlocalstorage();
     if (
       obj?.name === "" ||
       obj?.email === "" ||
@@ -64,7 +58,7 @@ const Page = () => {
       toast.error("You need to register");
       navigate("/");
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const columns = [
@@ -118,11 +112,11 @@ const Page = () => {
       </Box>
 
       <main className="checkboxcontainer">
-        <Firstcheck ind={0} lab={"customer"} />
-        <Firstcheck ind={1} lab={"design"} />
+        {options.map((item: string, key: number) => {
+          return <Firstcheck ind={key} lab={item} key={key} />;
+        })}
       </main>
     </>
   );
 };
 export default Page;
-
